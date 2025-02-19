@@ -1,0 +1,2 @@
+C:/Workspaces/dvnthn/movie_app/android/app/.cxx/Debug/653m1x2f/x86/CMakeFiles/edit_cache.dir
+C:/Workspaces/dvnthn/movie_app/android/app/.cxx/Debug/653m1x2f/x86/CMakeFiles/rebuild_cache.dir
