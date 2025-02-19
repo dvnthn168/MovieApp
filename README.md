@@ -1,16 +1,49 @@
-# movie_app
+🎬 Movie App
 
-A new Flutter project.
+Movie App là một ứng dụng Flutter đơn giản để hiển thị danh sách các bộ phim phổ biến, lấy dữ liệu từ TMDB API. Ứng dụng sử dụng GetX để quản lý trạng thái, Dio để gọi API, và hỗ trợ infinite scroll để tải thêm phim khi cuộn xuống.
 
-## Getting Started
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
-This project is a starting point for a Flutter application.
+🚀 Tính năng
 
-A few resources to get you started if this is your first Flutter project:
+🔥 Danh sách phim phổ biến (Lấy từ TMDB API)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+🔄 Lazy Loading (Tự động tải thêm khi cuộn xuống cuối danh sách)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🗂 Quản lý state bằng GetX
+
+⚡ Gọi API bằng Dio
+
+🎨 Hiển thị ảnh poster, rating, và thông tin phim
+
+💾 Lưu danh sách yêu thích với SQLite (sẽ cập nhật)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+🛠️ Công nghệ sử dụng
+
+Flutter (Framework chính)
+
+GetX (Quản lý state và routing)
+
+Dio (Gọi API)
+
+Flutter_dotenv (Lưu trữ API key)
+
+TMDB API (Lấy dữ liệu phim)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+📜 Giấy phép
+
+Dự án này được phát hành theo giấy phép MIT License. Vui lòng xem tệp LICENSE để biết thêm chi tiết.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+💬 Liên hệ
+
+GitHub: @dvnthn168
+
+Email: dvnthn168@gmail.com
+
+🔥 Happy Coding!
+
