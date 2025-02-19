@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/services/dio_clients.dart';
+import 'package:movie_app/services/api/dio_clients.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MovieController extends GetxController {
