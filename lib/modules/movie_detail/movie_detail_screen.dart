@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:movie_app/modules/movie_detail/movie_detail_controller.dart';
+import 'package:movie_app/utils/constants.dart';
 
 class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({super.key});
@@ -13,11 +14,11 @@ class MovieDetailScreen extends StatelessWidget {
         builder: (controller) {
           var movie = controller.movie;
           String backdropUrl = movie['backdrop_path'] != null
-              ? 'https://image.tmdb.org/t/p/w780${movie['backdrop_path']}'
-              : 'https://image.tmdb.org/t/p/w500${movie['poster_path']}';
+              ? '${AppConstants.urlImageTMDB780}${movie['backdrop_path']}'
+              : '${AppConstants.urlImageTMDB500}${movie['poster_path']}';
 
           String posterUrl =
-              'https://image.tmdb.org/t/p/w500${movie['poster_path']}';
+              '${AppConstants.urlImageTMDB500}${movie['poster_path']}';
           return Scaffold(
             appBar: AppBar(
               title: Text(controller.movie['title'] ?? 'No Title'),

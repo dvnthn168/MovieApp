@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:movie_app/modules/favorite/favorite_screen.dart';
 import 'package:movie_app/modules/movie_list/movie_list_controller.dart';
 import 'package:movie_app/modules/movie_detail/movie_detail_screen.dart';
+import 'package:movie_app/utils/constants.dart';
 
 class MovieListScreen extends StatelessWidget {
   const MovieListScreen({super.key});
@@ -11,7 +12,7 @@ class MovieListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      init: MovieController(),
+      init: MovieListController(),
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(title: const Text('Popular Movies')),
@@ -49,7 +50,7 @@ class MovieListScreen extends StatelessWidget {
                                       () => const MovieDetailScreen(),
                                       arguments: movie),
                                   borderRadius: BorderRadius.circular(12),
-                                  child: _cardItem(movie),
+                                  child: _cardItem(movie, controller),
                                 ),
                               );
                             },
@@ -72,7 +73,7 @@ class MovieListScreen extends StatelessWidget {
 
   Widget _circularLoading() => const Center(child: CircularProgressIndicator());
 
-  Widget _cardItem(movie) {
+  Widget _cardItem(movie, MovieListController controller) {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(
@@ -86,8 +87,7 @@ class MovieListScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
-                imageUrl:
-                    'https://image.tmdb.org/t/p/w200${movie['poster_path']}',
+                imageUrl: '${AppConstants.urlImageTMDB200}${movie['poster_path']}',
                 width: 100,
                 height: 150,
                 fit: BoxFit.cover,
