@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/modules/favorite/favorite_screen.dart';
 import 'package:movie_app/modules/movie_list/movie_list_controller.dart';
 import 'package:movie_app/modules/movie_detail/movie_detail_screen.dart';
 
@@ -14,6 +15,18 @@ class MovieListScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: AppBar(title: const Text('Popular Movies')),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.movie), label: "Movies"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite), label: "Favorites"),
+            ],
+            onTap: (index) {
+              if (index == 1) {
+                Get.to(() => const FavoriteScreen());
+              }
+            },
+          ),
           body: Obx(
             () => controller.isLoading.value
                 ? _circularLoading()
@@ -33,7 +46,8 @@ class MovieListScreen extends StatelessWidget {
                                     horizontal: 8.0, vertical: 6.0),
                                 child: InkWell(
                                   onTap: () => Get.to(
-                                      () => MovieDetailScreen(movie: movie)),
+                                      () => const MovieDetailScreen(),
+                                      arguments: movie),
                                   borderRadius: BorderRadius.circular(12),
                                   child: _cardItem(movie),
                                 ),

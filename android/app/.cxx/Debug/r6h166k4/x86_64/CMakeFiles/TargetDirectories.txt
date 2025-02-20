@@ -1,0 +1,2 @@
+C:/Users/MSI GAMING/Documents/workspace/dvnthn/MovieApp/android/app/.cxx/Debug/r6h166k4/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/MSI GAMING/Documents/workspace/dvnthn/MovieApp/android/app/.cxx/Debug/r6h166k4/x86_64/CMakeFiles/rebuild_cache.dir

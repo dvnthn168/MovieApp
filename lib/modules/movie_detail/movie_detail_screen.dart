@@ -1,34 +1,53 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:movie_app/modules/movie_detail/movie_detail_controller.dart';
 
 class MovieDetailScreen extends StatelessWidget {
-  final dynamic movie;
-
-  const MovieDetailScreen({super.key, required this.movie});
+  const MovieDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String backdropUrl = movie['backdrop_path'] != null
-        ? 'https://image.tmdb.org/t/p/w780${movie['backdrop_path']}'
-        : 'https://image.tmdb.org/t/p/w500${movie['poster_path']}';
+    return GetBuilder(
+        init: MovieDetailController(),
+        builder: (controller) {
+          var movie = controller.movie;
+          String backdropUrl = movie['backdrop_path'] != null
+              ? 'https://image.tmdb.org/t/p/w780${movie['backdrop_path']}'
+              : 'https://image.tmdb.org/t/p/w500${movie['poster_path']}';
 
-    String posterUrl = 'https://image.tmdb.org/t/p/w500${movie['poster_path']}';
-
-    return Scaffold(
-      appBar: AppBar(title: Text(movie['title'] ?? 'No Title')),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _imageBackdrop(backdropUrl),
-            _informMovie(posterUrl),
-          ],
-        ),
-      ),
-    );
+          String posterUrl =
+              'https://image.tmdb.org/t/p/w500${movie['poster_path']}';
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(controller.movie['title'] ?? 'No Title'),
+              actions: [
+                Obx(
+                  () => IconButton(
+                    icon: Icon(
+                        controller.isFavorite.value
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: Colors.red),
+                    onPressed: controller.toggleFavorite,
+                  ),
+                ),
+              ],
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _imageBackdrop(backdropUrl),
+                  _informMovie(posterUrl, movie),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
-  Widget _informMovie(String posterUrl) {
+  Widget _informMovie(String posterUrl, movie) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(

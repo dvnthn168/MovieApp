@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/modules/movie_list/movie_detail_screen.dart';
+import 'package:movie_app/modules/movie_list/movie_list_screen.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");

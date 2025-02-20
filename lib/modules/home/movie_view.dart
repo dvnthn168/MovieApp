@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/modules/movie_list/movie_detail_screen.dart';
+import 'package:movie_app/modules/movie_list/movie_list_screen.dart';
 
 class MovieApp extends StatelessWidget {
   const MovieApp({super.key});
