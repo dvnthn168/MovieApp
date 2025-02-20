@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:movie_app/modules/movie_detail/movie_detail_controller.dart';
 import 'package:movie_app/utils/constants.dart';
+import 'package:shimmer/shimmer.dart';
 
 class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({super.key});
@@ -63,10 +64,8 @@ class MovieDetailScreen extends StatelessWidget {
                   width: 100,
                   height: 150,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => const SizedBox(
-                      width: 100,
-                      height: 150,
-                      child: Center(child: CircularProgressIndicator())),
+                  placeholder: (context, url) =>
+                      SizedBox(width: 100, height: 150, child: _shimmerImage()),
                   errorWidget: (context, url, error) => Container(
                       width: 100,
                       height: 150,
@@ -122,12 +121,24 @@ class MovieDetailScreen extends StatelessWidget {
       width: double.infinity,
       height: 250,
       fit: BoxFit.cover,
-      placeholder: (context, url) => const SizedBox(
-          height: 250, child: Center(child: CircularProgressIndicator())),
+      placeholder: (context, url) =>
+          SizedBox(height: 250, child: _shimmerImage()),
       errorWidget: (context, url, error) => Container(
           height: 250,
           color: Colors.grey,
           child: const Icon(Icons.error, size: 50)),
+    );
+  }
+
+  Shimmer _shimmerImage() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        width: double.infinity,
+        height: 250,
+        color: Colors.white,
+      ),
     );
   }
 }

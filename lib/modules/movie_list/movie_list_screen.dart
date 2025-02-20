@@ -5,6 +5,7 @@ import 'package:movie_app/modules/favorite/favorite_screen.dart';
 import 'package:movie_app/modules/movie_list/movie_list_controller.dart';
 import 'package:movie_app/modules/movie_detail/movie_detail_screen.dart';
 import 'package:movie_app/utils/constants.dart';
+import 'package:shimmer/shimmer.dart';
 
 class MovieListScreen extends StatelessWidget {
   const MovieListScreen({super.key});
@@ -30,7 +31,7 @@ class MovieListScreen extends StatelessWidget {
           ),
           body: Obx(
             () => controller.isLoading.value
-                ? _circularLoading()
+                ? shimmerLoadingList()
                 : Column(
                     children: [
                       Expanded(
@@ -50,7 +51,7 @@ class MovieListScreen extends StatelessWidget {
                                       () => const MovieDetailScreen(),
                                       arguments: movie),
                                   borderRadius: BorderRadius.circular(12),
-                                  child: _cardItem(movie, controller),
+                                  child: _cardItem(movie),
                                 ),
                               );
                             },
@@ -71,9 +72,7 @@ class MovieListScreen extends StatelessWidget {
     );
   }
 
-  Widget _circularLoading() => const Center(child: CircularProgressIndicator());
-
-  Widget _cardItem(movie, MovieListController controller) {
+  Widget _cardItem(movie) {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(
@@ -87,7 +86,8 @@ class MovieListScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
-                imageUrl: '${AppConstants.urlImageTMDB200}${movie['poster_path']}',
+                imageUrl:
+                    '${AppConstants.urlImageTMDB200}${movie['poster_path']}',
                 width: 100,
                 height: 150,
                 fit: BoxFit.cover,
@@ -147,6 +147,95 @@ class MovieListScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _circularLoading() => const Center(child: CircularProgressIndicator());
+
+  Widget _cardItemShimmer() {
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(
+                  width: 100,
+                  height: 150,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      width: double.infinity,
+                      height: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      width: 150,
+                      height: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          width: 50,
+                          height: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
+                          width: 40,
+                          height: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget shimmerLoadingList() {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => _cardItemShimmer(),
     );
   }
 }
